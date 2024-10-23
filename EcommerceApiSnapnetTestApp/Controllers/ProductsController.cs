@@ -14,6 +14,10 @@ namespace EcommerceApiSnapnetTestApp.Controllers
         }
 
         // GET: api/<ProductsController>
+        /// <summary>
+        /// Get All Products Endpoint
+        /// </summary>
+        /// <returns>All products</returns>
         [HttpGet("GetProducts")]
         public async Task<IActionResult> GetProducts()
         {
@@ -33,6 +37,11 @@ namespace EcommerceApiSnapnetTestApp.Controllers
         }
 
         // POST api/<ProductsController>
+        /// <summary>
+        /// Add Products Endpoint
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Added Product</returns>
         [HttpPost("AddProducts")]
         public async Task<IActionResult> AddProducts([FromBody] ProductsDTO value)
         {
@@ -47,6 +56,11 @@ namespace EcommerceApiSnapnetTestApp.Controllers
         }
 
         // PUT api/<ProductsController>/5
+        /// <summary>
+        /// Edit Products Endpoint
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Edited Product</returns>
         [HttpPut("EditProducts/{id}")]
         public async Task<IActionResult> EditProducts([FromBody] ProductsModel value)
         {
@@ -56,6 +70,11 @@ namespace EcommerceApiSnapnetTestApp.Controllers
         }
 
         // DELETE api/<ProductsController>/5
+        /// <summary>
+        /// Delete Products Endpoint
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns>Deleted Product</returns>
         [HttpDelete("DeleteProducts/{id}")]
         public async Task<IActionResult> DeleteProducts(int id)
         {

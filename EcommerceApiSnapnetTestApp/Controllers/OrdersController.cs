@@ -19,6 +19,11 @@ public class OrdersController : ControllerBase
         this.dbContext = dbContext;
     }
 
+    /// <summary>
+    /// Order History Endpoint
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns>Order History</returns>
     [HttpGet("history")]
     public async Task<IActionResult> OrderHistory()
     {
@@ -34,6 +39,11 @@ public class OrdersController : ControllerBase
         return Ok(customerOrders);
     }
 
+    /// <summary>
+    /// Place Order Endpoint
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns>Placed order</returns>
     [HttpPost("place")]
     public async Task<IActionResult> PlaceOrder([FromBody] Orders newOrder)
     {
@@ -46,6 +56,12 @@ public class OrdersController : ControllerBase
 
         return CreatedAtAction(nameof(OrderHistory), new { customerId = newOrder.CustomerId }, newOrder);
     }
+
+    /// <summary>
+    /// Update order status
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns>Updated Order</returns>
 
     [HttpPut("update/{id}")]
     public async Task<IActionResult> UpdateOrder(int id, [FromBody] bool status)

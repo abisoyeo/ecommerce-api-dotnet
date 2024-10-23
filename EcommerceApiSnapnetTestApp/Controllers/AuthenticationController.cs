@@ -22,6 +22,12 @@ public class AuthenticationController : ControllerBase
         this.dbContext = dbContext;
     }
 
+    /// <summary>
+    /// Jwt Token Endpoint
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns>Generated Token</returns>
+
     [HttpPost("token")]
     [AllowAnonymous]
     public async Task<IActionResult> Authenticate([FromBody] AuthenticationData data)

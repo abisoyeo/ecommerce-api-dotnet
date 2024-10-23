@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System;
 using EcommerceApiSnapnetTestApp.Models;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 
 
@@ -23,6 +25,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 builder.Services.AddScoped<IEcommerceRepo, EcommerceRepo>();
 
+builder.Services.AddSwaggerGen(option =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFile));
+});
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer(options =>
