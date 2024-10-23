@@ -25,11 +25,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 builder.Services.AddScoped<IEcommerceRepo, EcommerceRepo>();
 
-builder.Services.AddSwaggerGen(option =>
-{
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFile));
-});
+//builder.Services.AddSwaggerGen(option =>
+//{
+//    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+//    option.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFile));
+//});
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer(options =>
