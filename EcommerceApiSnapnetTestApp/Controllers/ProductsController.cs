@@ -14,7 +14,7 @@ namespace EcommerceApiSnapnetTestApp.Controllers
         }
 
         // GET: api/<ProductsController>
-        [HttpGet]
+        [HttpGet("GetProducts")]
         public async Task<IActionResult> GetProducts()
         {
             try
@@ -33,7 +33,7 @@ namespace EcommerceApiSnapnetTestApp.Controllers
         }
 
         // POST api/<ProductsController>
-        [HttpPost]
+        [HttpPost("AddProducts")]
         public async Task<IActionResult> AddProducts([FromBody] ProductsDTO value)
         {
             if (!ModelState.IsValid)
@@ -47,7 +47,7 @@ namespace EcommerceApiSnapnetTestApp.Controllers
         }
 
         // PUT api/<ProductsController>/5
-        [HttpPut("{id}")]
+        [HttpPut("EditProducts/{id}")]
         public async Task<IActionResult> EditProducts([FromBody] ProductsModel value)
         {
             var result = ecommerceRepo.Update(value);
@@ -56,7 +56,7 @@ namespace EcommerceApiSnapnetTestApp.Controllers
         }
 
         // DELETE api/<ProductsController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteProducts/{id}")]
         public async Task<IActionResult> DeleteProducts(int id)
         {
             var result = ecommerceRepo.Delete(id);

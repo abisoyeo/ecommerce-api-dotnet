@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 [ApiController]
 public class AuthenticationController : ControllerBase
 {
-    private readonly IConfiguration _configuration;
-    private readonly ApplicationDbContext _dbContext;
+    private readonly IConfiguration configuration;
+    private readonly ApplicationDbContext dbContext;
 
     public AuthenticationController(IConfiguration configuration, ApplicationDbContext dbContext)
     {
-        _configuration = configuration;
-        _dbContext = dbContext;
+        this.configuration = configuration;
+        this.dbContext = dbContext;
     }
 
     [HttpPost("token")]
@@ -35,7 +35,7 @@ public class AuthenticationController : ControllerBase
 
     private string GenerateToken(CustomerModel customer)
     {
-        var secretKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Authentication:SecretKey"]));
+        var secretKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["Authentication:SecretKey"]));
         var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
         List<Claim> claims = new()
@@ -45,8 +45,8 @@ public class AuthenticationController : ControllerBase
         };
 
         var token = new JwtSecurityToken(
-            _configuration["Authentication:Issuer"],
-            _configuration["Authentication:Audience"],
+            configuration["Authentication:Issuer"],
+            configuration["Authentication:Audience"],
             claims,
             expires: DateTime.UtcNow.AddMinutes(60),
             signingCredentials: signingCredentials);
@@ -56,7 +56,7 @@ public class AuthenticationController : ControllerBase
 
     private async Task<CustomerModel?> ValidateCredentialsAsync(AuthenticationData data)
     {
-        return await _dbContext.Customers
+        return await dbContext.Customers
             .FirstOrDefaultAsync(c => c.CustomerName == data.UserName && c.Password == data.Password);
     }
 }
