@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "EcommerceApiSnapnetTestApp": {
+    "EcommerceApiApp": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -28,6 +28,9 @@ public class OrdersController : ControllerBase
     public async Task<IActionResult> OrderHistory()
     {
         var customerId = GetCustomerIdFromToken();
+
+        // what sql query this translates to inner join most likely
+        // how th e fk relationships btw order and customer works using ef core
         var customerOrders = await dbContext.Orders
             .Where(o => o.CustomerId == customerId)
             .Include(o => o.Products)
